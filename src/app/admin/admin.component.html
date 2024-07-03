@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<app-admin-header></app-admin-header>
+<div class="container mt-4">
+ 
+    <div class="row mt-5">
+        <div class="col-12 d-grid">
+            <a [routerLink]="[ '/print' ]" class="btn btn-sm btn-block btn-info my-1 py-4 mb-3 font-btn">History Bill</a>
+        </div>
+        <div class="col-12 d-grid">
+            <a [routerLink]="[ '/print/setting' ]" class="btn btn-sm btn-block btn-info my-1 py-4 mb-3  font-btn">Setting Printng</a>
+        </div> 
+        <div class="col-12 d-grid">
+            <a [routerLink]="[ '/setting/ecr' ]"  class="btn btn-sm btn-block btn-success my-1 py-4 mb-3  font-btn">Setting ECR</a>
+        </div>
+        <div class="col-12 d-grid">
+            <a href="javascript:;" (click)="logout()" class="btn btn-sm btn-block btn-danger my-1  py-4  mb-3 font-btn">Logout Terminal</a>
+        </div>
+    </div>
+</div>

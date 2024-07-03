@@ -1,0 +1,99 @@
+<div class="printdisable">
+
+    <app-header></app-header>
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-12 text-center">
+                <img src="./assets/galleries/g02.png" width="50%">
+                 
+            </div> -->
+
+            <div class="col-12 text-center mt-5">
+                <h1 class="display-4" [innerHTML]="kioskMessage['thanks']"></h1>
+            </div>
+        </div>
+        <div class="py-5">
+           
+            <div class="row my-5">
+                <div class="col-12 text-center">
+                    <h1 class="mb-1"> Bagaimana Anda menilai layanan kami?</h1>
+                </div>
+            </div>
+
+            <div class="row  " *ngIf="itemRate == false"> 
+
+                <div class="col-4 text-center d-grid"  >
+                    <button (click)="fnUpdateRate(1)" class="btn btn-danger border shadow-sm rounded">
+                        <img src="./assets/imgs/face-exhaling_1f62e-200d-1f4a8.png" width="90%">
+                        <h2>Kecewa</h2>
+                    </button>
+                </div>
+                <div class="col-4 text-center d-grid" >
+                    <button (click)="fnUpdateRate(3)" class="btn btn-warning border shadow-sm rounded">
+                        <img src="./assets/imgs/neutral-face_1f610.png" width="90%">
+                        <h2>Netral</h2>
+                    </button>
+                </div>
+                <div class="col-4 text-center d-grid">
+                    <button  (click)="fnUpdateRate(5)" class="btn btn-success border shadow-sm rounded">
+                        <img src="./assets/imgs/smiling-face-with-hearts_1f970.png" width="90%">
+                        <h2>Puas</h2>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row my-3" *ngIf="itemRate != false"> 
+
+                <div class="col text-center" *ngIf="itemRate['rate'] == 1" >
+                    <button  class="btn btn-danger border shadow-sm rounded">
+                        <img src="./assets/imgs/face-exhaling_1f62e-200d-1f4a8.png" width="90%">
+                        <h2>Poor</h2>
+                    </button>
+                </div>
+                <div class="col text-center" *ngIf="itemRate['rate'] == 3">
+                    <button   class="btn btn-warning border shadow-sm rounded">
+                        <img src="./assets/imgs/neutral-face_1f610.png" width="90%">
+                        <h2>Netral</h2>
+                    </button>
+                </div>
+                <div class="col text-center" *ngIf="itemRate['rate'] == 5">
+                    <button class="btn btn-success border shadow-sm rounded">
+                        <img  src="./assets/imgs/smiling-face-with-hearts_1f970.png" width="90%">
+                        <h2>Excellent</h2>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 text-center">
+                <h1 class="my-4 display-5">Cetak Ulang Bill ?</h1>
+            </div>
+
+            <div class="col-6 d-grid">
+                <button type="button" (click)="home()" class="btn btn-lg  btn-warning font-btn rounded">Tidak</button>
+            </div>
+            <div class="col-6  d-grid">
+                <button type="button" (click)="printBill()" class="btn btn-lg  btn-info font-btn rounded">Iya</button>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="text-center mt-4">
+                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <h1>{{warning}}</h1>
+                    <h3>Time out in {{countdown}} second</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="printable">
+    <app-print-detail></app-print-detail>
+</div>

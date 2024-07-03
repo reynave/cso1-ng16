@@ -1,1 +1,162 @@
 /* You can add global styles to this file, and also import other style files */
+*{ 
+    font-family: 'Roboto'; 
+}
+h1{
+    font-family: 'Manrope-Bold'; 
+}
+ 
+h2{
+    font-family: 'Manrope-Bold';
+}
+h4{
+    font-family: 'Manrope-Bold';
+ 
+}
+.rounded{
+    -webkit-border-radius: 10px !important;
+-moz-border-radius: 10px !important;
+border-radius: 10px !important;
+}
+.bg-gray{
+    background-color: #2C393F;
+}
+.mb-6{
+    margin-bottom: 110px;
+}
+
+ 
+code{
+    color: rgb(79, 79, 79);
+}
+strong{
+     font-family: 'Roboto-Bold';
+}
+button{
+    font-family: 'Manrope-Medium'; 
+    letter-spacing: 0.5px;
+}
+
+.bg-corner{
+    background: #fff url(./assets/imgs/corner-4.png);
+    background-size: contain;
+}
+ 
+.page-content{
+    padding-top: 80px;
+}
+table th{
+    
+    text-transform: uppercase;
+    
+}
+.small{
+  
+}
+.rounded-top-c1{
+    -webkit-border-top-left-radius: 20px;
+-webkit-border-top-right-radius: 20px;
+-moz-border-radius-topleft: 20px;
+-moz-border-radius-topright: 20px;
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;
+}
+
+.fixFooter{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+}
+
+table td, table th{
+    font-size: 18px;
+}
+
+code{
+    font-size: 2rem;
+}
+.web{
+    max-width: 500px;
+    margin: auto;
+    /*border: 1px solid #ccc;*/
+}
+.web .floatingTop{
+    max-width: 500px;
+    margin: auto;
+}
+.web .fixFooter{
+    max-width: 100%; 
+}
+.web .fixFooter .footerweb{
+    max-width: 500px;
+    margin: auto;
+}
+.modal-body{
+    font-size: 40px;
+}
+.modal-body .form-control-lg{
+    font-size: 80px;
+}
+
+.printbill{
+   
+    text-transform: uppercase;
+}
+
+.font-btn{
+    font-size: 40px;
+    font-family: 'Manrope-Bold';
+}
+
+.printable {
+     /* hide the printing component from @media screen test 2022000000047 */
+    display: none;
+  }
+@media print {
+    /* invert the display (show/hide) properties of the main */
+    /* aplication component and the printing component       */
+    .disablePrintArea{
+        display: none;
+    }
+    .printable {
+      display: block;
+    }
+    *{
+        font-size: 14px !important;
+    }
+    .printdisable {
+      display: none;
+    }
+}
+.btn-login{
+    font-size: 60px;
+    font-family: 'Manrope-Bold';
+
+}
+.btn-visitor{
+    font-size: 50px;
+    font-family: 'Manrope-Bold';
+}
+.box-qty{
+    border: 1px solid #eee;
+    min-width: 30px;
+    padding: 5px 20px;
+    text-align: center; 
+    display: inline-block;
+}
+
+.inputScan{
+    text-transform: uppercase;
+    font-family: monospace;
+    font-size: 37px; 
+}
+
+footer{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+}

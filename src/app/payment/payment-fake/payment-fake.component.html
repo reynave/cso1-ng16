@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="container  py-4">
+    <div class="row">
+        <div class="col-6">
+            <a href="javascript:void(0)" (click)="back()" class="btn p-1  mx-1">
+                <img src="./assets/imgs/icons8-back-67.png" width="90">
+            </a>
+
+        </div>
+        <div class="col-6 text-end">
+            <a href="javascript:void(0)" (click)="help()" class="btn bg-warning p-1 border rounded mx-1">
+                <img src="./assets/imgs/icons8-bell-64.png" width="90">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center my-5">
+                <ng-container [ngSwitch]="paymentStatus">
+                    <ng-container *ngSwitchCase="1">
+                        <div class="py-5">
+                            <h1 class="display-1">Fake Payment</h1>
+                            <h1>For internal testing only!</h1> 
+                        </div>
+
+                        <div class="py-5">
+                            <img src="./assets/gif/icons8-pos-terminal.gif" width="30%">
+                        </div>
+    
+                        <div class="row g-2 ">
+                            <div class="col-12 d-grid">
+                                <a href="javascript:;" class="btn btn-block btn-primary border text-white  font-btn"
+                                    (click)="fnProcessPaymentFake();">Fake Payment Process</a>
+                            </div>
+                            <div class="col-12 d-grid mt-3">
+                                <a href="javascript:;" (click)="back();" class="btn btn-block btn-light border font-btn">
+                                    Cancel & Back
+                                </a>
+                            </div>
+                        </div>
+                    </ng-container>
+    
+                    <ng-container *ngSwitchCase="2">
+                        <h1>Payment Success</h1>
+                        <div class="my-4">{{t1_thank_you_display}}</div>
+                        <button type="button" (click)="finishShopping();" class="btn btn-lg btn-success">Close</button>
+                    </ng-container>
+    
+                    <ng-container *ngSwitchCase="3">
+                        <h1>Payment Fail</h1>
+                        <div>Please try again!</div>
+                    </ng-container>
+    
+                    <ng-container *ngSwitchDefault>...</ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

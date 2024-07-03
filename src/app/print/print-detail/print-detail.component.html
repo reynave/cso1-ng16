@@ -1,0 +1,150 @@
+<app-header></app-header>
+<app-admin-header></app-admin-header>
+<div class="container-fluid disablePrintArea ">
+    <div class="row g-0">
+        <div class="col-8  "> 
+           
+        </div>
+
+        <div class="col-4 text-end">
+            <h1>TRANSACTION </h1>
+            <h2><div class="text-monospace">{{id}}</div> </h2>
+        </div>
+       
+    </div>
+
+</div>
+
+<div class="container text-monospace printbill">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="bg-white p-1 shadow-md ">
+                <div class="text-center"> {{template.companyName}} </div>
+                <div class="text-center"> {{template.companyAddress}} </div>
+                <div class="text-center"> {{template.companyPhone}} </div>
+
+                <div class="row mt-4">
+                    <div class="col-6">
+                        Order No : <span class="text-monospace">{{id}}</span>
+                    </div>
+                    <div class="col-6 text-end">
+                        {{date | date:'medium' }}
+                    </div>
+                </div>
+
+                <table class="table table-sm ">
+                    <thead>
+                        <tr>
+                            <th>Qty</th>
+                            <th>Desciption</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">Discount</th>
+                            <th class="text-end">Total</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of items">
+                            <td>{{x.qty}}</td>
+                            <td>{{x.shortDesc}}
+                                <div [hidden]="x.isSpecialPrice == 0">*Special price</div>
+                                <div>{{x.note}}</div>
+                            </td>
+                            <td class="text-end">{{x.price |number}}</td>
+                            <td class="text-end"><span [hidden]="x.totalDiscount<=0">-</span>{{x.totalDiscount |number}} </td>
+
+                            <td class="text-end">{{x.totalPrice |number}}</td>
+
+                        </tr>
+                        <tr *ngFor="let x of freeItem" [hidden]="x.printOnBill <= 0">
+                            <td>{{x.qty}}</td>
+                            <td>{{x.shortDesc}}
+                                <span>(Free Items)</span>
+                            </td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0</td>
+
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"> Subtotal </td>
+                            <td class="text-end"> {{summary.total | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Discount </td>
+                            <td class="text-end"> <span [hidden]="!summary.discount">-</span>{{summary.discount | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Discount Member </td>
+                            <td class="text-end"> <span [hidden]="!summary.discountMember">-</span>{{summary.discountMember | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Voucher </td>
+                            <td class="text-end">{{summary.voucher | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> BKP </td>
+                            <td class="text-end"> {{summary.bkp | number}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> DPP </td>
+                            <td class="text-end"> {{summary.dpp | number}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> PPN </td>
+                            <td class="text-end"> {{summary.ppn | number}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Non BKP </td>
+                            <td class="text-end">{{summary.nonBkp | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Total (Setelah Pajak) </td>
+                            <td class="text-end"> {{summary.final | number}}</td>
+                        </tr>
+
+                    </tfoot>
+                </table>
+
+
+                <div class="text-monospace small p-1">
+
+                    <div [hidden]="freeItem.length < 1">Jangan lupa ambil promo items:</div>
+                    <span class="me-2" *ngFor="let x of freeItem" [hidden]="x.printOnBill > 0">
+                        {{x.shortDesc}} ({{x.qty}})
+                    </span>
+                </div>
+
+                <div class="text-monospace small p-1">
+                    <div [hidden]="freeItemWaitingScanFail.length < 1">Free item belum diterima karena belum di Scan !</div>
+                    <span class="me-2" *ngFor="let x of freeItemWaitingScanFail">
+                        {{x.shortDesc}} ({{x.qty}})
+                    </span>
+                </div>
+
+                <div class="text-center" [innerHtml]="template.footer"> </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container disablePrintArea mt-5">
+    <div class="row">
+        <div class="col-6 text-center d-grid ">
+            <button type="button" [disabled]="!printable" (click)="print('browser')"  class="btn btn-lg btn-block btn-info my-1 py-4 mb-3 font-btn">
+                <img src="./assets/imgs/icons8-label-printer-100.png" height="50"> Browser Print
+            </button> 
+        </div>
+
+        <div class="col-6 text-center d-grid">
+            <button type="button" (click)="print('android')" class="btn btn-lg btn-block btn-success my-1 py-4 mb-3 font-btn">
+                <img src="./assets/imgs/icons8-label-printer-100.png" height="50" > Android Print
+            </button> 
+        </div>
+    </div>
+</div>

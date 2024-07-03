@@ -1,0 +1,17 @@
+a ,p {
+    font-size: 40px;
+}
+
+.bgn{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: -999;
+    background-color: #F4F7FC;
+}
+
+.form-control{
+    font-size: 40px;
+}

@@ -1,0 +1,81 @@
+<div class="pt-2 ">
+    <app-header></app-header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <!-- <a href="javascript:void(0)" [routerLink]="[ '/payment']" class="btn p-1  mx-1">
+                    <img src="./assets/imgs/icons8-back-67.png" width="40">
+                </a> -->
+
+            </div>
+            <div class="col-6 text-end">
+                <a href="javascript:void(0)" (click)="help()" class="btn bg-warning p-1 border rounded mx-1">
+                    <img src="./assets/imgs/icons8-bell-64.png" width="40">
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="text-center">
+                <h2 class="mb-3">{{uuidKios}}</h2>
+
+                <div [hidden]="status">
+                    <h1 class="text-center my-2"> QRIS EXPIRED</h1>
+                    <button type="button" class="btn btn-warning btn-lg rounded font-btn" (click)="fnGenerate()">Generate New QRIS</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12">
+            <div class="text-center" [hidden]="!status">
+                <div [hidden]="qrcode!=''">
+                    <h1>Generate QRIS</h1>
+                    <h2>Please wait..</h2>
+                    <img src="./assets/gif/Blocks-1s-200px.gif">
+                </div>
+
+                <div [hidden]="qrcode == '' ">
+
+
+                    <img [src]="image" width="50%" class="mt-5">
+                    <qrcode [qrdata]="qrcode" [width]="500" [errorCorrectionLevel]="'H'"></qrcode>
+                    <h1>NMID :{{nmid}}</h1>
+                    <h1>{{name}}</h1>
+                    <h1 class="display-1 mb-3">Rp {{summary['final'] | number}}</h1>
+                    <h2>Segera dibayarkan sebelum pukul {{exp | date:'H:mm'}}</h2>
+
+                    <div class="text-center mt-5">
+                        <button type="button" class="btn btn-warning btn-lg rounded font-btn" (click)="fnQrisTelkomStatus()">Cek Status Pembayaran</button>
+                        <h2 class="my-4">Ada Kendala? Hubungi CS</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 ">
+
+
+            <div class="text-center mt-4">
+
+                <h1 class="py-2">{{note}}</h1>
+                <h3 [hidden]="!loadingStatus">Checking Please Wait</h3>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

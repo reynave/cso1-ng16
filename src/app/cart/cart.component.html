@@ -1,0 +1,169 @@
+<div class="sticky-top pt-2  bg-white ">
+
+    <app-header></app-header>
+
+    <div class="container-fluid "> 
+        <div class="row g-1 mb-4" [hidden]="adminMode"> 
+            <div class="col-8">  
+                <h1>Hi, {{member['firstName']}} {{member['lastName']}} </h1> 
+            </div> 
+
+            <div class="col-4 text-end">
+                <a href="javascript:void(0)" (click)="modal(modalCancel);" class="btn bg-danger p-1 border rounded mx-1">
+                    <img src="./assets/imgs/icons8-close-64.png" width="40">
+                </a>
+                <a href="javascript:void(0)" (click)="help();" class="btn bg-warning p-1 border rounded mx-1">
+                    <img src="./assets/imgs/icons8-bell-64.png" width="40">
+                </a>
+
+            </div>
+        </div>
+ 
+        <div class="row" [hidden]="adminMode">
+            <div class="col-12 d-grid">
+                <div class="text-center">
+                    <!-- BARCODE SCAN HERE --> 
+                    <!-- <h4><img src="./assets/imgs/icons8-fast-shopping-64.png" class="mx-1" width="30"> SCAN ITEM</h4> -->
+                    <input type="text" class="form-control form-control-lg bg-light my-4 inputScan" #formRow id="scan" (change)="scanner();" [(ngModel)]="barcode" pattern="[0-9]" placeholder="Scan Barcode" autofocus>
+
+                </div>
+            </div>
+
+            <div class="col-12 " [hidden]="!resultbox">
+
+                <div class="rounded border shadow-sm  p-4  bg-light mb-3">
+
+
+                    <div class="row" [hidden]="!addItem">
+                        <!-- <div class="col-3" [hidden]="error == true">
+                            <img [src]="item.images ? item.images : 'https://dummyimage.com/400x400/ebebeb/07a6b8.png&text=No+Images'" class="shadow-sm rounded" width="100%">
+                        </div> -->
+                        <div class="col-12" [hidden]="error == true">
+
+                            <h1 class="mb-2">{{item.barcode}}</h1>
+                            <h1 class="display-5">{{item.name}}</h1>
+                            <h1 class="display-6">
+                                Rp {{item.price | number}}
+                            </h1>
+
+                        </div>
+                    </div>
+
+                    <div class="row" [hidden]="error != true">
+                        <div class="col-12 text-center">
+                            <h1 class="py-5">{{noteScanner}}</h1>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row  my-2">
+            <div class="col-8">
+                <h2 class="">Scanned Items</h2>
+            </div>
+            <div class="col-4 text-end">
+                <h2 class=" me-2">{{items.length + freeItem.length}} Items</h2>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="container-fluid mb-6">
+    <!-- VISITOR -->
+    <div class="row" >
+        <div class="col-12 ">
+
+            <div class=" rounded border shadow-sm px-4 py-1 bg-light mb-3" *ngFor="let x of items">
+                <div class="row  "> 
+                    <div class="col-8 col-lg-6">
+                        <h3>{{x.barcode}}</h3>
+                        <h2>{{x.description}}</h2>
+                        <h2>
+                            <span class="box-qty bg-white me-2 border">{{x.qty}}</span> Rp {{x.price | number}}
+                        </h2>
+                    </div>
+                    <div class="col-4 col-lg-4 text-end ">
+                        <div class="me-2">
+                            <h1>Rp {{x.totalPrice | number}}</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class=" rounded border shadow-sm p-4 bg-light mb-3" *ngFor="let x of freeItem">
+                <div class="row g-3">
+                    <!-- <div class="col-2">
+                        <img src="https://dummyimage.com/400x400/ebebeb/07a6b8.png&text=Sample+Images" class="shadow-sm rounded" width="100%">
+                    </div> -->
+                    <div class="col-12">
+                        <h2>{{x.description}}</h2>
+                        <h2>
+                            <span class="box-qty bg-light">{{x.qty}}</span> Free Item
+                        </h2>
+
+                    </div>
+                    <div class="col-4 col-lg-3 text-end  ">
+                        <div class="  me-2">
+                            <h1>Rp 0</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-4">
+                <h4>No more items</h4> 
+            </div>  
+            <div class="text-center my-4">
+                <button type="button" class="btn btn-lg btn-info border rounded p-3 " (click)="fnPromo();" >CHECK PROMO!</button> 
+            </div>
+        </div>
+    </div>
+ 
+</div>
+
+
+
+<div class="fixFooter" >
+    <div class="footerweb bg-gray rounded-top-c1 py-4 shadow-sm">
+        <div class="container-fluid">
+            <div class="row" >
+                <div class="col-6 text-white">
+                    <div class="mx-3">
+                        <h4>Gross Total</h4>
+                        <h1 >Rp {{summary.total | number}}</h1>
+                    </div>
+                </div>
+                <div class="col-6 align-self-center">
+                    <div class="mx-3 d-grid">
+                        <button type="button" (click)="fnCloseCart();" [disabled]="items.length<1" 
+                        class="btn btn-info font-btn text-white  rounded">CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #modalCancel let-modal>
+    <div class="modal-header">
+
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h1 class="text-center m-5">Do You Want Cancel Transaction ? </h1>
+
+        <div class="text-center m-5 d-grid">
+            <button type="submit" class="btn btn-danger btn-lg rounded font-btn" (click)="fnLogoutVisitor();">Yes</button>
+        </div>
+    </div>
+
+</ng-template>

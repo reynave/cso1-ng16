@@ -1,0 +1,67 @@
+<div class="pt-2 ">
+
+    <app-header></app-header>
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <a href="javascript:void(0)" [routerLink]="[ '/bill']" class="btn p-1  mx-1">
+                    <img src="./assets/imgs/icons8-back-67.png" width="40">
+                </a>
+            </div>
+
+            <div class="col-6 text-end">
+                <a href="javascript:void(0)" (click)="modal(modalCancel);" class="btn bg-danger rounded p-1   mx-1">
+                    <img src="./assets/imgs/icons8-close-64.png" width="40">
+                </a>
+                <a href="javascript:void(0)" (click)="help()" class="btn bg-warning p-1 border rounded mx-1">
+                    <img src="./assets/imgs/icons8-bell-64.png" width="40">
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="text-center">
+                <h1>TOTAL PAYMENT</h1>
+                <h1 class="display-1">Rp {{final | number}}</h1>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row  my-5">
+
+        <div class="col-12 text-center mb-4">
+            <h1>Select Payment Methods :</h1>
+        </div>
+        <div class="col" *ngFor="let x of storeOutlesPaymentType">
+            <div class="p-1 d-grid mb-5  ">
+                <a href="javascript:;" (click)="payment(x);" class="btn  btn-block  border shadow-sm">
+                    <img [src]="x.image" width="100%" class="p-2">
+                    <h4>{{x.label}}</h4>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #modalCancel let-modal>
+    <div class="modal-header">
+
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h1 class="text-center m-5">Do You Want Cancel Transaction ? </h1>
+
+        <div class="text-center m-5 d-grid">
+            <button type="submit" class="btn btn-danger btn-lg rounded font-btn" (click)="fnLogoutVisitor();">Yes</button>
+        </div>
+    </div>
+
+</ng-template>

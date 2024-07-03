@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+.mb-6{
+    margin-bottom: 110px;
+}
+
+code{
+    color: rgb(79, 79, 79);
+}
+strong{
+     font-family: 'Roboto-Bold';
+}
+button{
+    font-family: 'Manrope-Medium'; 
+    letter-spacing: 0.5px;
+}
+
+.bg-corner{
+    background: #fff url(./assets/imgs/corner-4.png);
+    background-size: contain;
+}
+ 
+.page-content{
+    padding-top: 80px;
+}
+table th{
+    
+    text-transform: uppercase;
+    
+}
+.small{
+  
+}
+ 
+
+.fixFooter{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+}
+
+table td{
+    
+}
+
+
+.web{
+    max-width: 500px;
+    margin: auto;
+    /*border: 1px solid #ccc;*/
+}
+.web .floatingTop{
+    max-width: 500px;
+    margin: auto;
+}
+.web .fixFooter{
+    max-width: 100%; 
+}
+.web .fixFooter .footerweb{
+    max-width: 500px;
+    margin: auto;
+}
+
+
+.printbill{
+   
+    text-transform: uppercase;
+}
+
+.font-btn{
+    font-size: 40px !important;
+    font-family: 'Manrope-Bold';
+}
+ 

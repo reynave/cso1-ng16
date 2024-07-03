@@ -1,0 +1,101 @@
+<div class="bgn"></div>
+<app-header></app-header>
+<div class="container-fluid mt-5">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center my-5">
+                <!-- <img [src]="this.api+'uploads/configuration/'+kioskMessage['logo']" class="intro-images"> -->
+                <img [src]="kioskMessage['logo']" class="intro-images">
+
+            </div>
+        </div>
+        <div class="col-12 text-center my-4">
+            <h1 class="display-5 Oswald-Bold" [innerHTML]="kioskMessage['welcome']"></h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 text-center my-5">
+            <h1 class="display-5 " [innerHTML]="greeting"></h1>
+            <h1 [innerHTML]="kioskMessage['limit']"></h1>
+        </div>
+        <div class="col-12 text-center" [hidden]="!isStillLogin">
+            <h1>{{myUUID}}</h1>
+
+            <a [routerLink]="[ '/cart' ]" [queryParams]="{kioskUuid: myUUID}"
+                class="btn btn-lg bg-light border rounded font-btn">BACK TO CART</a>
+        </div>
+    </div>
+
+    <div class="row" [hidden]="isStillLogin">
+        <div class="col-6" [routerLink]="[ '/login/memberBarcode' ]">
+            <div class="border shadow-md rounded bg-white p-4 text-center">
+                <img src="./assets/imgs/icons8-member-card-64.png" width="128">
+                <h1>Member</h1>
+            </div>
+        </div>
+        <div class="col-6" (click)="loginVisitor(modalWelcome);">
+            <div class="border shadow-md rounded bg-white p-4 text-center">
+                <img src="./assets/imgs/icons8-visitor-100.png" width="128">
+                <h1>Visitor </h1>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    <div class="container-fluid">
+        <div class="row g-1">
+            <div class="col-12 text-center">
+                <h2 class="p-1">{{today}}</h2>
+                <h2 class="p-1">SCO V{{version}}. Login : <a [routerLink]="[ '/admin' ]">Admin Mode</a></h2>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+
+
+<ng-template #modalWelcome let-modal let-c="close" let-d="dismiss">
+
+    <div class="modal-body">
+        <div class="text-center">
+            <!-- <img class="my-4" [src]="this.api+'uploads/configuration/'+kioskMessage['logo']" width="90%"> -->
+            <img class="my-4" [src]="kioskMessage['logo']" width="90%">
+
+        </div>
+        <div class="m-4 text-center " >
+            <small [innerHTML]="kioskMessage['visitorDisplay']"> </small>
+        </div>
+        <div class="text-center">
+            <small>{{countdown}}</small>
+        </div>
+        <div class="m-5 ">
+
+            <div *ngIf="kioskMessage.visitorPhoto; else justNext">
+                <div class="d-grid">
+                    <a [routerLink]="[ '/login/userPhoto' ]"
+                        class=" btn  btn-lg btn-warning text-white rounded py-3 font-btn">NEXT & TAKE PHOTO</a>
+                </div>
+            </div>
+
+            <ng-template #justNext>
+                <div class="d-grid">
+                    <a [routerLink]="[ '/cart' ]" class=" btn  btn-lg btn-success text-white rounded py-3 font-btn">NEXT 
+                       
+                        <span class="spinner-border ms-2" style="width: 2.5rem; height: 2.5rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </span>
+                    </a>
+
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</ng-template>

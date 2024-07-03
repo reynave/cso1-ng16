@@ -1,0 +1,56 @@
+<app-header></app-header>
+<app-admin-header></app-admin-header>
+<div class="container mt-5">
+     
+    <div class="row">
+        <div class="col-8">
+            <h1>PRINTER SETTING</h1>
+        </div>
+        <div class="col-4 text-end">
+            <a href="javascript:;" class="display-6" (click)="reloadData()">Reload()</a>
+        </div>
+        <div class="col-12">
+            <h4>Select USB ID/Address for Printer : </h4>
+        </div>
+        <div class="col-12">
+            <span>
+                For Terminal9 = 1155_2010
+            </span>
+            <input type="text" class="form-control form-control-lg" [(ngModel)]="printerName"> 
+            <!-- <select class="form-control form-control-lg" [(ngModel)]="printerName">
+                <option *ngFor="let x of selectPrinter" [value]="x.printername">{{x.printername}}</option>
+            </select> -->
+        </div>
+         
+        <div class="col-6">
+            <div class="d-grid">
+                <a href="javascript:;" (click)="fnClear()" class="btn btn-sm btn-block btn-light my-2 py-2 ">CLEAR SAVE</a>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="d-grid">
+                <a href="javascript:;" (click)="fnSave()" class="btn btn-sm btn-block btn-info my-2 py-2">SAVE</a>
+            </div>
+        </div>
+        <div class="col-12 text-center" [hidden]="!loading">
+            <div class="my-4">Loading</div>
+        </div>
+
+        <div class="col-12 mt-5">
+            <h4>Save Setting History</h4>
+            <input type="text" [(ngModel)]="printerName" class="form-control form-control-lg"> 
+
+            <div class="text-center mt-5">
+                <a href="javascript:;" (click)="fnTestPrinting();" class="btn btn-sm btn-block btn-warning my-2 py-1">
+                    <img src="./assets/imgs/icons8-label-printer-100.png" height="50">
+                    <h4 class="d-inline">Test Printing</h4>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mt-1 p-1 border shadow-md">
+                <pre> {{note}}  </pre>
+            </div>
+        </div>
+    </div>
+</div>

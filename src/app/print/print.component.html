@@ -1,0 +1,39 @@
+<app-header></app-header>
+<app-admin-header></app-admin-header>
+<div class="container-fluid">
+    <div class="row"> 
+        <div class="col-12 text-center">
+            <h1>TODAY HISTORY TRANSACTION </h1> 
+        </div> 
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="border p-1 shadow-sm bg-white">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Transaction</th>
+                            <th>Member</th>
+                            <th>Payment</th>
+                            <th>Approval</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                        <tr *ngFor="let x of items"  [routerLink]="[ '/print/detail', x.id ]" style="cursor: pointer;">
+                            <td>{{x.startDate | date:'mediumTime'}}</td>
+                            <td>{{x.id}}</td>
+                            <Td>{{x.memberId}}</Td>
+                            <Td>{{x.paymentName}}</Td>
+                            <Td>{{x.approvalCode}}</Td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

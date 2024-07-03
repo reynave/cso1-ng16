@@ -1,0 +1,170 @@
+<div class="bgn"></div>
+<div class="pt-2">
+
+    <app-header></app-header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <a href="javascript:void(0)" [routerLink]="[ '/cart']" [queryParams]="{ kioskUuid: uuid}" class="btn p-1  mx-1">
+                    <img src="./assets/imgs/icons8-back-67.png" width="40">
+                </a>
+            </div>
+            <div class="col text-center">
+                <h2>CHECKOUT {{uuid}}</h2>
+            </div>
+            <div class="col text-end">
+                <a href="javascript:void(0)" (click)="modal(modalCancel);" class="btn bg-danger rounded p-1   mx-1">
+                    <img src="./assets/imgs/icons8-close-64.png" width="40">
+                </a>
+                <a href="javascript:void(0)" (click)="help()" class="btn bg-warning rounded p-1 border mx-1">
+                    <img src="./assets/imgs/icons8-bell-64.png" width="40">
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-3 pb-4">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="bg-white p-3 shadow-md border printbill  rounded">
+
+                <table class="table table-sm text-monospace">
+                    <thead>
+                        <tr>
+                            <th>Qty</th>
+                            <th>Desciption</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">Discount</th>
+                            <th class="text-end">Total</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of items">
+                            <td>{{x.qty}}</td>
+                            <td>
+                                <div>{{x.barcode}}</div>
+                                <div> {{x.description}}</div>
+                                <div [hidden]="x.isSpecialPrice == 0">*Special price</div>
+                                <div [hidden]="x.isFreeItem == 0">*Free Items</div>
+
+                                <div>{{x.note}}</div>
+                            </td>
+                            <td class="text-end">{{x.price |number}}</td>
+                            <td class="text-end"><span [hidden]="x.totalDiscount<=0">-</span>{{x.totalDiscount |number}} </td>
+
+                            <td class="text-end">{{x.totalPrice |number}}</td>
+
+                        </tr>
+                        <tr *ngFor="let x of freeItem" [hidden]="x.printOnBill <= 0">
+                            <td>{{x.qty}}</td>
+                            <td>{{x.description}}
+                                <span>(Free Items)</span>
+                            </td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0</td>
+                            <td class="text-end">0</td>
+
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"> SubTotal </td>
+                            <td class="text-end"> {{summary.total | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Discount </td>
+                            <td class="text-end"> <span [hidden]="!summary.discount">-</span>{{summary.discount | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Discount Member </td>
+                            <td class="text-end"> <span [hidden]="!summary.memberDiscount">-</span>{{summary.memberDiscount | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Voucher </td>
+                            <td class="text-end">{{summary.voucer | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> BKP </td>
+                            <td class="text-end"> {{summary.bkp | number}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> DPP </td>
+                            <td class="text-end"> {{summary.dpp | number}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> PPN </td>
+                            <td class="text-end"> {{(summary.ppn) | number}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Non BKP </td>
+                            <td class="text-end">{{summary.nonBkp | number}} </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"> Total Setelah Pajak </td>
+                            <td class="text-end"> {{summary.final | number}}</td>
+                        </tr>
+
+                    </tfoot>
+                </table>
+
+                <div class="text-monospace small p-1">
+                    <div [hidden]="freeItemLabel < 1">FREE ITEMS : </div>
+                    <span class="me-2" *ngFor="let x of freeItem" [hidden]="x.printOnBill > 0">
+                        {{x.description}} ({{x.qty}})
+                    </span>
+                </div>
+                <div class="text-monospace small p-1 text-danger">
+                    <div [hidden]="freeItemWaitingScan.length < 1">FREE ITEM SCAN REQUIREMENT : </div>
+                    <span class="me-2" *ngFor="let x of freeItemWaitingScan">
+                        {{x.description}} ({{x.qty}})
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br> <br> <br>
+</div>
+
+
+<div class="fixFooter">
+    <div class="footerweb bg-gray rounded-top-c1 py-4 shadow-sm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6 text-white">
+                    <div class="mx-3">
+                        <h4>Final Total</h4>
+                        <h1>Rp {{summary.final | number}}</h1>
+                    </div>
+                </div>
+                <div class="col-6 align-self-center">
+                    <div class="mx-3 d-grid">
+                        <button type="button" [routerLink]="[ '/payment', ]" class="btn btn-info font-btn text-white  rounded">PAYMENT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<ng-template #modalCancel let-modal>
+    <div class="modal-header">
+
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <h1 class="text-center m-5">Do You Want Cancel Transaction ? </h1>
+
+        <div class="text-center m-5 d-grid">
+            <button type="submit" class="btn btn-danger btn-lg rounded font-btn" (click)="fnLogoutVisitor();">Yes</button>
+        </div>
+    </div>
+
+</ng-template>

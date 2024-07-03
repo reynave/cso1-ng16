@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div class="bgn"></div>
+
+<app-admin-header></app-admin-header>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 mb-5">
+            <div class="bg-white border p-5">
+                <h1 class="my-5">IP ECR Ethernet</h1>
+                <h2>IP Only</h2>
+                <input type="text" class="form-control form-control-lg p-3 mb-3" [(ngModel)]="env_ecr"
+                    placeholder="192.168.1.132">
+
+                <div class="d-grid">
+                    <button type="button" (click)="fnSave();"
+                        class="btn  btn-lg btn-primary text-white rounded  font-btn">SAVE</button>
+                </div>
+
+                <div class="text-center my-5" [hidden]="!loading">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <p>Loading</p>
+                </div>
+                
+                <div class="alert alert-{{bg}} my-2" [hidden]="note.length < 2">
+                    <code>{{note}}</code>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 text-center">
+            <h2 class="mt-1">Developer mode</h2>
+        </div>
+        <div class="col-12">
+            <div class="d-grid ">
+                <button type="button" (click)="fnEchotest();" class="btn btn-lg font-btn btn-primary py-2">Echo Test</button>
+            </div>
+
+        </div>
+        <div class="col-12">
+            <div class="d-grid ">
+                <button type="button" (click)="fnPayment();" class="btn btn-lg font-btn btn-warning py-2">Test Payment Debit/CC</button>
+            </div>
+        </div> 
+       
+        <div class="col-12">
+
+            
+            <div class="alert alert-warning mt-3 shadow-sm">
+                <div><code>LOGS</code></div>
+                <code>{{logs | json}}</code>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 mt-5 text-center">
+
+            <a href="javascript:;" (click)="back();" class="btn btn-lg btn-success">Back</a>
+        </div>
+    </div>
+</div>

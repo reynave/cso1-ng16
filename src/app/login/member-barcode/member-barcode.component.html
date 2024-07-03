@@ -1,0 +1,111 @@
+<div class="bgn"></div>
+
+ <app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center my-5">
+                <img src="./assets/galleries/img12.png" [hidden]="member.length < 1" width="50%">
+                <img src="./assets/galleries/img10.png" [hidden]="member.length != 0" width="50%">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+       
+        
+        <div class="col-12" [hidden]="member.length != 0">
+            <div class="">
+
+                <div class="text-center">
+                    <h1>Please enter your member ID</h1>
+                    <h1 class="text-danger my-5" [innerHTML]="this.notes"></h1>
+                </div>
+                <div class="m-5">
+                    <div class="col-12 mb-5">
+                    <input type="text" class="form-control form-control-lg font-monospace inputScan border-5" 
+                    #formRow [(ngModel)]="memberId" placeholder="Scan Barcode" autofocus >
+                    </div>
+                    <!-- <div class="col-12 ">
+                        <input type="text" class="form-control form-control-lg font-monospace inputScan border-5" 
+                        #formRow [(ngModel)]="memberId" placeholder="Scan Barcode" autofocus (keydown.enter)="scannerMember();">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center mt-5">
+                            <button type="button" class="btn btn-lg rounded btn-light btn-keypad" (click)="addText('0')">0</button>
+                            <button type="button" class="btn btn-lg rounded btn-light btn-keypad" (click)="addText('1')">1</button>
+                            <button type="button" class="btn btn-lg rounded btn-light btn-keypad" (click)="addText('2')">2</button>
+                            <button type="button" class="btn btn-lg   rounded btn-light btn-keypad" (click)="addText('3')">3</button>
+                            <button type="button" class="btn btn-lg   rounded btn-light btn-keypad" (click)="addText('4')">4</button>
+                        </div>
+                        <div class="col-12 text-center mb-5">
+                            
+                            <button type="button" class="btn btn-lg   rounded btn-light btn-keypad" (click)="addText('5')">5</button> 
+                            <button type="button" class="btn btn-lg   rounded btn-light btn-keypad" (click)="addText('6')">6</button>
+                            <button type="button" class="btn btn-lg   rounded btn-light btn-keypad" (click)="addText('7')">7</button>
+                            <button type="button" class="btn btn-lg   rounded btn-light btn-keypad" (click)="addText('8')">8</button>
+                            <button type="button" class="btn btn-lg   rounded btn-light btn-keypad" (click)="addText('9')">9</button>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        
+                        <div class="col  d-grid">
+                            <button type="button" (click)="back()" class=" btn  btn-lg bg-white border rounded shadow-sm py-3 font-btn">BACK</button>
+                        </div> 
+                        <div class="col  d-grid">
+                            <button type="button" (click)="clear()" class=" btn  btn-lg bg-warning border rounded shadow-sm py-3 font-btn">CLEAR</button>
+                        </div> 
+                        <div class="col  d-grid">
+                            <button type="button" (click)="fnSubmitMemberIdManual()" class=" btn  btn-lg btn-primary text-white border shadow-sm rounded py-3 font-btn">SUBMIT</button>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12" [hidden]="member.length < 1">
+            <div class="p-4 mx-5">
+                <div class="text-center">
+                    <h1 class="text-danger my-5" [innerHTML]="this.notes"></h1>
+                </div>
+                <table style="width: 100%" class="my-5">
+                    <tr>
+                        <td><h1>Name</h1></td>
+                        <td><h1>: {{member['firstName']}} {{member['lastName']}}</h1> </td>
+                    </tr>
+                    <tr>
+                        <td><h1>Member ID</h1></td>
+                        <td><h1>: {{member['id']}} </h1></td>
+                    </tr>
+                </table>
+               
+
+                <div *ngIf="kioskMessage.memberPhoto; else justNext">
+                    <div   class="d-grid mt-5">
+                        <a [routerLink]="[ '/login/userPhoto' ]" class=" btn  btn-lg btn-warning text-white rounded py-3 font-btn">NEXT & TAKE PHOTO</a>
+                    </div>
+                </div>
+    
+                <ng-template #justNext>
+                    <div  class="d-grid mt-5">
+                        <button type="button" (click)="goToCart();" class=" btn  btn-lg btn-success text-white rounded py-3 font-btn">GO TO CART</button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="text-center" [hidden]="!loginSuccess">
+                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h1>{{countdown}}</h1>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+ 

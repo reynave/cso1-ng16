@@ -1,0 +1,83 @@
+
+<div class="bgn"></div>
+<app-header></app-header>
+ 
+<div class="container-fluid ">
+ 
+    <div class="row">
+        <div class="col-12">
+            <a href="javascript:;" (click)="back();">Back Setting IP</a>
+        </div>
+        <div class="col-12 ">
+            <div class="p-5">
+                <div class="text-center">{{loading ? "Loading":""}}</div>
+                <div class="text-center text-danger mb-4">
+                    <h1> {{note}}</h1>
+                 </div>
+                <div [hidden]="loading">
+                    <div class="border p-3 rounded bg-white shadow-sm mb-2">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td >Divice Number</td>
+                                <td>: {{terminal.id}}</td>
+                            </tr> 
+                            <tr>
+                                <td >Platform</td>
+                                <td>: {{platform}} </td>
+                            </tr>
+                            <tr>
+                                <td> Serial Number</td>
+                                <td>:  {{serialNumber}}</td>
+                            </tr> 
+                            <tr>
+                                <td width="40%">Terminal ID</td>
+                                <td>: {{terminal.id}}</td>
+                            </tr> 
+                            <tr>
+                                <td>Store Outlet ID</td>
+                                <td>: {{terminal.storeOutlesId}}</td>
+                            </tr>  
+                            <tr>
+                                <td>Terminal Name</td>
+                                <td>: {{terminal.name}}</td>
+                            </tr> 
+                          
+                            <tr>
+                                <td>Register</td>
+                                <td>: {{terminal.inputDate * 1000 | date:'short'}}</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Status</td>
+                                <td>: {{systemOnline}} </td>
+                            </tr>
+                             <tr>
+                                <td>Printer USB</td>
+                                <td>: {{printer}}  </td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                              
+                                <td> <a [routerLink]="[ '/print/setting' ]">Setting Printer</a> </td>
+                            </tr>
+                        </table>
+
+                        <div>
+                            deviceLogs
+                        </div>
+                        <pre>{{deviceLogs | json}}</pre>
+                    </div>
+                   
+
+                   <div class="d-grid mt-3 text-center" > 
+                     <button type="button"  class="btn  btn-lg btn-info text-white rounded py-2 my-5 font-btn" [disabled]="!systemOnline" (click)="start();">Login Terminal</button>
+                     <div class="mt-4">
+                        <a href="javascript:;"  (click)="reload();">Reload</a>
+                     </div>
+                   </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

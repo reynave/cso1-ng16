@@ -1,0 +1,78 @@
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col-12 text-center my-5">
+      <h1 class="display-4">Terminal SCO V{{version}}</h1>
+      <h4>Ver 16</h4>
+      <img src="./assets/galleries/10423564.jpg" width="30%"  >
+    </div>
+    <div class="col-12 my-3">
+      <h2>Android </h2>
+      <input type="text" class="form-control form-control-lg p-3" readonly [(ngModel)]="device">
+    </div>
+    <div class="col-12 my-3">
+      <h2>Size </h2>
+      <div class="form-control form-control-lg p-3 bg-light">
+        <p>Lebar Layar: {{ screenWidth }}px</p>
+        <p>Tinggi Layar: {{ screenHeight }}px</p>
+      </div>
+    </div>
+    <div class="col-12 my-3">
+      <h2>Input IP Address Server</h2>
+      <input type="text" class="form-control form-control-lg p-3" readonly [(ngModel)]="env_api">
+    </div>
+    <div class="col-12 my-3">
+      <h2>Input Socket Address Server</h2>
+      <input type="text" class="form-control form-control-lg" readonly [(ngModel)]="env_socket">
+    </div>
+    <div class="col-12 my-3">
+      <h2>Input Manual Serial Number</h2>
+      <input type="text" class="form-control form-control-lg" [(ngModel)]="serialNumber">
+      <div class="my-2 text-center">
+        <button type="button" class="btn btn-primary btn-lg" (click)="fnSaveManualSerialNumber();"> Save Manual Serial
+          Number</button>
+        <span class="fs-3"> {{logSave}}</span>
+      </div>
+    </div>
+
+    <div class="col-12 p-3">
+      <p>{{note |json}}</p>
+    </div>
+
+
+    <div class="col-12 mb-3 text-center">
+      <button type="button" class="btn  btn-lg btn-warning rounded px-5  mx-2  font-btn" (click)="fnTestCon();">Test
+        Connection 1(intranet)</button>
+    </div>
+
+    <div class="col-12 mb-3 text-center">
+      <button type="button" class="btn  btn-lg btn-warning rounded px-5  mx-2  font-btn"
+        (click)="fnTestConInternet();">Test
+        Connection 2 (internet)</button>
+    </div>
+    <div class="col-12 mb-3 text-center">
+      <button type="button" class="btn  btn-lg btn-warning rounded px-5  mx-2  font-btn" (click)="fnIframe();">Test
+        Connection 3 (Parent Iframe)</button>
+    </div>
+
+    <div class="col-12">
+      <div class="d-grid">
+        <a [routerLink]="[ '/startup' ]" class=" btn  btn-lg btn-info text-white rounded py-5 my-5 font-btn">START
+          SYSTEM</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <footer>
+  <div class="container-fluid">
+    <div class="row g-1">
+      <div class="col-10">
+        <small class="p-2">{{today}}</small>
+      </div>
+      <div class="col-2 text-end">
+        <small class="p-2">SCO V{{version}}</small>
+      </div>
+    </div>
+  </div>
+
+</footer> -->

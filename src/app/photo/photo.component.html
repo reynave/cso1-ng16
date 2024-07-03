@@ -1,0 +1,47 @@
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <h4>
+                Photo Required
+            </h4>
+        </div>
+        <button type="button" (click)="nativeCam()">CAMEARA NATIVE</button>
+        <div class="col-12 text-center">
+
+            <div style="height: 500px;" class="border p-1 bg-white">
+
+                <div *ngIf="webcamImage">
+                    <img [src]="webcamImage.imageAsDataUrl" width="100%" height="100%" />
+                </div>
+
+                <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageQuality]="1"
+                    (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+
+            </div>  
+        </div>
+        <div class="col-12 mt-3">
+          
+            <button class="btn btn-sm btn-secondary mx-1" [hidden]="takePhoto" (click)="triggerSnapshot();">Take A Snapshot</button>
+            <button class="btn btn-sm btn-secondary mx-1" [hidden]="!takePhoto" (click)="showCamera();">Take new photo</button>
+            <button class="btn btn-sm btn-secondary mx-1" (click)="goToCart();" [hidden]="!takePhoto">Next</button>
+        </div>
+    </div>
+    <div>
+        <div>DeviceId:</div>
+        <input id="deviceId" type="text" readonly [(ngModel)]="deviceId" class="form-control form-control-sm">
+    </div>
+
+    <div>
+        <a [routerLink]="[ '/cart']" [queryParams]="{kioskUuid: uuid}">Skip</a>
+    </div>
+
+</div>
+
+
+
+<h4 *ngIf="errors.length > 0">Messages:</h4>
+<ul *ngFor="let error of errors">
+    <li>{{error | json}}</li>
+</ul>

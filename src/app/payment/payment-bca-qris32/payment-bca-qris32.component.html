@@ -1,0 +1,42 @@
+
+<div class="container  py-4">
+  <div class="row">
+    <div class="col-6"> 
+      <a href="javascript:void(0)" (click)="backToBill()" class="btn p-1  rounded mx-1">
+        <img src="./assets/imgs/icons8-close-64.png" width="90">
+      </a>
+    </div>
+    <div class="col-6 text-end">
+
+      <a href="javascript:void(0)" (click)="help()" class="btn bg-warning p-1 border rounded mx-1">
+        <img src="./assets/imgs/icons8-bell-64.png" width="90">
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="text-center py-5">
+
+        <img src="./assets/imgs/qrscan.jpg" width="90%">
+        <h1 class="mt-4"> REFF NO : {{RRN}} </h1>
+        <h1 class="mt-4"> BILL NO : {{kioskUuid}} </h1>
+        <h1 class="mt-4"> TOTAL : IDR {{grandTotal | number}} </h1>
+      </div>
+      <div class="my-5 text-center">
+        <h1 [innerHTML]="note"></h1>
+      </div>
+    </div>
+    <div class="col-12"> 
+      <div class="d-grid m-4">
+        <button type="button" (click)="fnRequestQrisPaid();" class="btn btn-lg font-btn text-white btn-info py-3">Check
+          Status Payment</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+ 

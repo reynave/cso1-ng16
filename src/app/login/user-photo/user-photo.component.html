@@ -1,0 +1,72 @@
+<div class="bgn"></div>
+
+<app-header></app-header>
+
+<div class="container mt-5 pos-content">
+    <div class="row">
+        <div class="col-12" [hidden]="memberId == '0' ">
+            <div class="p-4 mx-5">
+                <div class="text-center">
+                    <h1 class="my-5" [innerHTML]="this.notes"></h1>
+                </div>
+                <table style="width: 100%" class="my-5">
+                    <tr>
+                        <td><h1>Name</h1></td>
+                        <td><h1>: {{name}}</h1> </td>
+                    </tr>
+                    <tr>
+                        <td><h1>Member ID</h1></td>
+                        <td><h1>: {{memberId}} </h1></td>
+                    </tr>
+                </table> 
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-10 offset-1 ">
+            <div class="border text-center bg-dark  rounded shadow-sm">
+                <img [src]="images" width="400px" >
+            </div> 
+        </div>
+    </div>
+    <div class="row" *ngFor="let x of tnc"> 
+        <div class="col-1">
+            <img src="./assets/imgs/checkbox.png" width="110%">
+        </div>
+        <div class="col-11">
+            <p>{{x.value}}</p>
+        </div> 
+    </div>
+   
+    <div class="row mt-5">
+        <div class="col-6 d-grid">
+            <button type="button" class="btn btn-dark btn-lg rounded font-btn py-3" (click)="takePhoto()" >Take Photo</button> 
+        </div>
+        <div class="col-6 d-grid">
+            <button type="button" class="btn btn-success btn-lg rounded font-btn py-3" [disabled]="!initPhoto" (click)="goToCart();" >{{ initPhoto ? "Ok and Next":"Photo required"}}</button>
+        </div>
+        <div class="col-12 text-center my-3" [hidden]="device == true">
+            <a href="javascript:;"  (click)="fnSkipPhoto();" >Skip take photo</a>
+        </div>
+
+        <div class="col-12 py-5">
+            <div [hidden]="!loading" class="text-center">
+                loading...
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<footer>
+    <div class="container-fluid">
+        <div class="row g-1"> 
+            <div class="col-12 text-center">
+                <h2 class="p-1">{{today}}</h2> 
+                <h2 class="p-1">SCO V{{version}} </h2>
+            </div>
+        </div>
+    </div>
+
+</footer>
