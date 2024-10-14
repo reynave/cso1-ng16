@@ -1,5 +1,5 @@
-//let IpServerMall = '192.168.202.101'; // CHANDRA KARANG
-let IpServerMall = '192.168.207.37';  
+let IpServerMall = '192.168.202.101'; // CHANDRA KARANG
+//let IpServerMall = '192.168.207.37';  
 declare var require: any;
 export const environment = {
   production: true,
